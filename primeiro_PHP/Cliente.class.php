@@ -1,9 +1,9 @@
 <?php
-	class cliente
+	class Cliente
 	{
 		
 		//método construtor
-		public  function __construct(public int $id_cliente = 0,public string $nome = "", public string $cpf = "", public string $email = ""){}
+		public  function __construct(private int $id_cliente = 0,private string $nome = "", private string $cpf = "", private string $email = ""){}
 		
 		//método
 		public function inserir_cliente($conexao)
@@ -19,7 +19,9 @@
 			//executar o comando no BD
 			$stm->execute();
 			//retornar uma mensagem
-			return "Cliente inserido com sucesso";
+			$id = $conexao->lastInsertId();
+			echo $id;
+		return "Cliente inserido com sucesso";
 		}
 		
 		public function conexao()
